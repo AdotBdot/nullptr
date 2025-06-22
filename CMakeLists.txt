@@ -37,7 +37,7 @@ project(nullptr)
 set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(INCL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs)
-sete(SOURCES
+set(SOURCES
     ${SRC_DIR}/main.cpp
 )
 
