@@ -39,6 +39,7 @@ set(INCL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs)
 set(SOURCES
     ${SRC_DIR}/main.cpp
+    ${SRC_DIR}/Shader.cpp
 )
 
 add_executable(nullptr ${SOURCES})
