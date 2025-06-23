@@ -58,8 +58,13 @@
                     lcov
                     vcpkg
                     vcpkg-tool
+                    clangd
                   ]
                   ++ (if system == "aarch64-darwin" then [ ] else [ gdb ]);
+                shellHook = ''
+                  export LD_LIBRARY_PATH=${pkgs.wayland}/lib:${pkgs.libxkbcommon}/lib:$LD_LIBRARY_PATH
+                '';
+
               };
         }
       );
