@@ -48,10 +48,14 @@ target_include_directories(nullptr PRIVATE
 )
 
 #Libraries
-
-
 include(FetchContent)
 
+#OpenGL
+find_package(OpenGL REQUIRED)
+include_directories(${OPENGL_INCLUDE_DIRS})
+target_link_libraries(nullptr OpenGL::GL)
+
+#GLM
 FetchContent_Declare(
 	glm
 	GIT_REPOSITORY	https://github.com/g-truc/glm.git
@@ -59,5 +63,26 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(glm)
+target_link_libraries(nullptr glm::glm)
 
-target_link_libraries(nullptr PRIVATE glm::glm)
+#GLFW
+FetchContent_Declare(
+	glfw
+	GIT_REPOSITORY	https://github.com/glfw/glfw.git
+	GIT_TAG e7ea71be039836da3a98cea55ae5569cb5eb885c
+)
+
+FetchContent_MakeAvailable(glfw)
+
+if(WIN32)
+    set(GLFW_BUILD_WIN32 ON)
+elseif(UNIX)
+    set(GLFW_BUILD_WAYLAND ON)
+    set(GLFW_BUILD_X11 ON)
+endif()
+
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+
+target_link_libraries(nullptr glfw)
