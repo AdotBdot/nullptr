@@ -58,7 +58,6 @@
                     lcov
                     vcpkg
                     vcpkg-tool
-                    clangd
                   ]
                   ++ (if system == "aarch64-darwin" then [ ] else [ gdb ]);
                 shellHook = ''

@@ -34,3 +34,4 @@
 .direnv
 build
 .vscode
+.cache
