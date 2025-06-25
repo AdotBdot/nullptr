@@ -33,7 +33,7 @@ add_compile_options(
 
 #Projects
 project(nullptr)
-
+set(CMAKE_WARN_DEPRECATED FALSE CACHE BOOL "Suppress deprecated warnings")
 set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(INCL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs)
