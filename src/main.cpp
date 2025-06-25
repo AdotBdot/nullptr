@@ -1,15 +1,20 @@
 #include <GLFW/glfw3.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "InputHandler.hpp"
+
 static void error_callback(int error, const char* description)
 {
     fputs(description, stderr);
 }
+
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GL_TRUE);
 }
+
 int main(void)
 {
     GLFWwindow* window;
@@ -23,7 +28,15 @@ int main(void)
         exit(EXIT_FAILURE);
     }
     glfwMakeContextCurrent(window);
-    glfwSetKeyCallback(window, key_callback);
+
+
+    //Input
+    Input::InputHandler inputHandler;
+    Input::CallbackHandler::setActiveInputHandler(inputHandler);
+    glfwSetKeyCallback(window, Input::CallbackHandler::KeyCallback);
+
+    inputHandler.bind(Input::Mapping(Input::Key::Escape), [window](void){glfwSetWindowShouldClose(window, GL_TRUE);});
+
     while (!glfwWindowShouldClose(window))
     {
         float ratio;
