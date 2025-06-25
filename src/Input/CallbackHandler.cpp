@@ -7,11 +7,17 @@ namespace Input
 
     void CallbackHandler::setActiveKeyboardHandler(KeyboardHandler &inputHandler)
     {
+        if(ActiveKeyboardHandler_ == nullptr)
+            return;
+            
         ActiveKeyboardHandler_ = &inputHandler;
     }
 
     void CallbackHandler::setActiveMouseHandler(MouseHandler &mouseHandler)
     {
+        if(ActiveMouseHandler_ == nullptr)
+            return;
+
         ActiveMouseHandler_ = &mouseHandler;
     }
 
