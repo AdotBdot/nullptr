@@ -5,8 +5,7 @@
 
 namespace Input
 {
-    
-    enum KeyEvent
+    enum class KeyEvent : uint8_t
     {
         Press = GLFW_PRESS,
         Release = GLFW_RELEASE,
@@ -24,8 +23,7 @@ namespace Input
     };
 
     //TODO: Add F1-25 keys
-    //TODO: fix CapsLock and NumLock redefinition
-    enum Key
+    enum class Key : uint16_t
     {
         Space = GLFW_KEY_SPACE,
         Escape = GLFW_KEY_ESCAPE,
@@ -38,9 +36,9 @@ namespace Input
         PageDown = GLFW_KEY_PAGE_DOWN,
         Home = GLFW_KEY_HOME,
         End = GLFW_KEY_END,
-        //CapsLock = GLFW_KEY_CAPS_LOCK,
+        CapsLock = GLFW_KEY_CAPS_LOCK,
         ScrollLock = GLFW_KEY_SCROLL_LOCK,
-        //NumLock = GLFW_KEY_NUM_LOCK,
+        NumLock = GLFW_KEY_NUM_LOCK,
         PrintScreen = GLFW_KEY_PRINT_SCREEN,
         Pause = GLFW_KEY_PAUSE,
         Left = GLFW_KEY_LEFT,
@@ -122,11 +120,11 @@ namespace Input
         NP_Equal = GLFW_KEY_KP_EQUAL
     };
 
-    enum MouseKey
+    enum class MouseKey : uint8_t
     {
-        Left = GLFW_MOUSE_BUTTON_LEFT,
+        Left = GLFW_MOUSE_BUTTON_1,
         Right = GLFW_MOUSE_BUTTON_RIGHT,
-        Middle = GLFW_MOUSE_MIDDLE,
+        Middle = GLFW_MOUSE_BUTTON_MIDDLE,
         Last = GLFW_MOUSE_BUTTON_LAST,
         MB_1 = GLFW_MOUSE_BUTTON_1,
         MB_2 = GLFW_MOUSE_BUTTON_2,
@@ -135,6 +133,6 @@ namespace Input
         MB_5 = GLFW_MOUSE_BUTTON_5,
         MB_6 = GLFW_MOUSE_BUTTON_6,
         MB_7 = GLFW_MOUSE_BUTTON_7,
-        MB_8 = GLFW_MOUSE_BUTTON_8,
+        MB_8 = GLFW_MOUSE_BUTTON_8
     };
 }

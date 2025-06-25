@@ -8,15 +8,16 @@ namespace Input
 {
     struct Mapping
     {
-        int Key;
+        int Button;
         int Modifiers;
         int Action;
 
-        Mapping(const int key, const int modifiers = 0, const int action = KeyEvent::Press);
+        Mapping(const int &key, const int &modifiers = 0, const int &action = static_cast<int>(KeyEvent::Press));
+        Mapping(const Key &key, const int &modifiers = 0, const KeyEvent &action = KeyEvent::Press);
     };
 
     inline bool operator<(const Mapping &l, const Mapping &r)
     {
-        return std::tie(l.Key, l.Modifiers, l.Action) < std::tie(r.Key, r.Modifiers, r.Action);
+        return std::tie(l.Button, l.Modifiers, l.Action) < std::tie(r.Button, r.Modifiers, r.Action);
     }
 }
