@@ -1,5 +1,4 @@
 #include "Input/CallbackHandler.hpp"
-#include "CallbackHandler.hpp"
 
 namespace Input
 {
