@@ -8,7 +8,6 @@
 
 namespace Input
 {
-
     class CallbackHandler
     {
     private:
@@ -24,5 +23,4 @@ namespace Input
         static void MousePosCallback(GLFWwindow *window, double xPos, double yPos);
         static void ScrollCallback(GLFWwindow *window, double xOffset, double yOffset);
     };
-
 }
