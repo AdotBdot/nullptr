@@ -23,7 +23,7 @@ namespace Input
 
     void CallbackHandler::MouseButtonCallback(GLFWwindow *window, int button, int action, int mods)
     {
-        Mapping input(key, mods, action);
+        Mapping input(button, mods, action);
         ActiveMouseHandler_->processKeyInput(input);
     }
 
