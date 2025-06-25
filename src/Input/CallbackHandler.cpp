@@ -21,13 +21,15 @@ namespace Input
         ActiveMouseHandler_ = &mouseHandler;
     }
 
-    void CallbackHandler::KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
+    void CallbackHandler::KeyCallback(GLFWwindow *window,
+                                      int key, int scancode, int action, int mods)
     {
         Mapping input(key, mods, action);
         ActiveKeyboardHandler_->processInput(input);
     }
 
-    void CallbackHandler::MouseButtonCallback(GLFWwindow *window, int button, int action, int mods)
+    void CallbackHandler::MouseButtonCallback(GLFWwindow *window, 
+                                              int button, int action, int mods)
     {
         Mapping input(button, mods, action);
         ActiveMouseHandler_->processKeyInput(input);
