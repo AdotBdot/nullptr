@@ -23,13 +23,14 @@ class Window{
     void setTitle(const std::string& title);
     std::string getTitle()const;
 
-    void runLoop();
-
     GLFWwindow* getWindow();
 
+    bool isRunning()const;
+
+    
     private:
     GLFWwindow* window_;
     std::string title_;
     glm::uvec2 size_;
-  
+    
 };

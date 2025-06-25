@@ -1,5 +1,6 @@
 #include "../include/Window.hpp"
 #include "GLFW/glfw3.h"
+#include <GL/gl.h>
 
 Window::Window() : window_(nullptr) {}
 
@@ -11,7 +12,11 @@ Window::Window(const std::string &title, const glm::uvec2 &size) {
   create(title, size);
 }
 
-Window::~Window() { close(); }
+Window::~Window() { 
+  close(); 
+  glfwDestroyWindow(window_);
+  glfwTerminate();
+}
 
 void Window::create(const std::string &title, const glm::uvec2 &size) {
   // TODO Print Error when glfw did not initialize
@@ -33,24 +38,11 @@ void Window::create(const std::string &title, const glm::uvec2 &size) {
 
 void Window::close() {
   glfwSetWindowShouldClose(window_, true);
-  glfwDestroyWindow(window_);
-  glfwTerminate();
 }
 
 void Window::setTitle(const std::string &title) {
   title_ = title;
   glfwSetWindowTitle(window_, title_.c_str());
-}
-
-void Window::runLoop() {
-  while (!glfwWindowShouldClose(window_)) {
-    //TODO put here drawing function
-    
-    // HACK I have no idea why it is needed
-    glGetError();
-    display();
-    glfwPollEvents();
-  }
 }
 
 void Window::setSize(const glm::uvec2 &size) {
@@ -59,6 +51,14 @@ void Window::setSize(const glm::uvec2 &size) {
 }
 void Window::clear() { glClear(GL_COLOR_BUFFER_BIT); }
 
-void Window::display() { glfwSwapBuffers(window_); }
+void Window::display() { 
+  //HACK Temp fix for triangle not rendering
+  glGetError();
+  glfwSwapBuffers(window_); 
+}
 
 GLFWwindow *Window::getWindow() { return window_; };
+
+bool Window::isRunning() const{
+  return  ! glfwWindowShouldClose(window_);
+}
