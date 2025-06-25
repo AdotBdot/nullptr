@@ -2,16 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Input.hpp"
+#include "Input/KeyboardHandler.hpp"
+#include "Input/CallbackHandler.hpp"
 #include "Window.hpp"
+
 static void error_callback(int error, const char *description) {
   fputs(description, stderr);
-}
-
-static void key_callback(GLFWwindow *window, int key, int scancode, int action,
-                         int mods) {
-  if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-    glfwSetWindowShouldClose(window, GL_TRUE);
 }
 
 void drawTriangle(float ratio) {
@@ -35,11 +31,11 @@ int main(void) {
   Window window("Simple example", 800, 600);
   glfwSetErrorCallback(error_callback);
   // Input
-  Input::InputHandler inputHandler;
-  Input::CallbackHandler::setActiveInputHandler(inputHandler);
+  Input::KeyboardHandler keyboardHandler;
+  Input::CallbackHandler::setActiveKeyboardHandler(keyboardHandler);
   glfwSetKeyCallback(window.getWindow(), Input::CallbackHandler::KeyCallback);
 
-  inputHandler.bind(Input::Mapping(Input::Key::Escape),
+  keyboardHandler.bind(Input::Mapping(Input::Key::Escape),
                     [&](void) { window.close(); });
 
   while (window.isRunning()) {
