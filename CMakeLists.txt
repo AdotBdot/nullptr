@@ -96,3 +96,13 @@ target_link_libraries(nullptr glfw)
 #GLAD
 add_subdirectory(${LIB_DIR}/glad)
 target_link_libraries(nullptr glad)
+
+#spdlog
+FetchContent_Declare(
+	spdlog
+	GIT_REPOSITORY	https://github.com/gabime/spdlog.git
+	GIT_TAG 	6fa36017cfd5731d617e1a934f0e5ea9c4445b13 #tag 1.15.3
+)
+
+FetchContent_MakeAvailable(spdlog)
+target_link_libraries(nullptr spdlog)
