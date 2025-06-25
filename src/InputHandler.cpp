@@ -1,39 +1,52 @@
 #include "InputHandler.hpp"
 
-namespace Input {
+#include <print>
 
-InputHandler *CallbackHandler::ActiveInputHandler{nullptr};
+namespace Input
+{
 
-Mapping::Mapping(const int key, const int modifiers)
-    : Key(key), Modifiers(modifiers) {}
+InputHandler* CallbackHandler::ActiveInputHandler{nullptr};
 
-bool Mapping::operator<(const Mapping &other) const {
-  return std::make_pair(Key, Modifiers) <
-         std::make_pair(other.Key, other.Modifiers);
+Mapping::Mapping(const int key, const int modifiers):
+    Key(key),
+    Modifiers(modifiers)
+{
 }
 
-InputHandler::InputHandler() {}
-
-InputHandler::~InputHandler() {}
-
-void InputHandler::bind(Mapping mapping, std::function<void()> function) {
-  Mappings_[mapping] = function;
+bool Mapping::operator<(const Mapping &other) const
+{
+    return std::make_pair(Key, Modifiers) < std::make_pair(other.Key, other.Modifiers);
 }
 
-void InputHandler::processInput(const Mapping &input) {
-  if (!Mappings_.contains(input))
-    return;
-
-  Mappings_[input]();
+InputHandler::InputHandler()
+{
 }
 
-void CallbackHandler::setActiveInputHandler(InputHandler &inputHandler) {
-  ActiveInputHandler = &inputHandler;
+InputHandler::~InputHandler()
+{
 }
 
-void CallbackHandler::KeyCallback(GLFWwindow *window, int key, int scancode,
-                                  int action, int mods) {
-  Mapping input(key, mods);
-  ActiveInputHandler->processInput(input);
+void InputHandler::bind(Mapping mapping, std::function<void()> function)
+{
+    Mappings_[mapping] = function;
 }
-} // namespace Input
+
+void InputHandler::processInput(const Mapping &input)
+{
+    if(!Mappings_.contains(input))
+        return;
+
+    Mappings_[input]();
+}
+
+void CallbackHandler::setActiveInputHandler(InputHandler &inputHandler)
+{
+    ActiveInputHandler = &inputHandler;
+}
+
+void CallbackHandler::KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
+{
+    Mapping input(key, mods);
+    ActiveInputHandler->processInput(input);
+}
+}
