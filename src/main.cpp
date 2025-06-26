@@ -51,8 +51,8 @@ int main(void) {
   glEnableVertexAttribArray(0);
 
   // Shaders
-  Shader *vertexShader = Shader::loadFromFile("../resources/triangle_vert.glsl", ShaderType::Vertex);
-  Shader *fragmentShader = Shader::loadFromFile("../resources/triangle_frag.glsl", ShaderType::Fragment);
+  Shader *vertexShader = Shader::loadFromFile("./resources/triangle_vert.glsl", ShaderType::Vertex);
+  Shader *fragmentShader = Shader::loadFromFile("./resources/triangle_frag.glsl", ShaderType::Fragment);
 
   vertexShader->compile();
   fragmentShader->compile();
