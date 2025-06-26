@@ -39,18 +39,23 @@ GLuint Shader::getId() const
     return id_;
 }
 
-//TODO: Check if file.good()
 Shader *Shader::loadFromFile(const std::string shaderPath, const ShaderType type)
 {
     std::ifstream file;
     file.open(shaderPath);
+
+    if( !file.good())
+    {
+        std::print("Error reading file: {0}", shaderPath);
+        return nullptr;
+    }
 
     std::stringstream buffer;
     buffer << file.rdbuf();
     GLsizei length = file.tellg();
     file.close();
 
-    return new Shader(buffer.str().c_str(), length, type);
+    return new Shader(buffer.str(), length, type);
 }
 
 //--ShaderProgram class --------------------------------------------------------------
